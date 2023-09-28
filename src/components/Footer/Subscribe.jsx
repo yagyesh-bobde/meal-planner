@@ -21,7 +21,7 @@ const Subscribe = () => {
       const res = await response.json()
 
       if(res.success) {
-        e.reset()
+        setemail("")
       }
   }
 
