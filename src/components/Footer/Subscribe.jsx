@@ -1,8 +1,19 @@
 import { useState } from "react"
+import { send } from '@emailjs/browser'
 
 const Subscribe = () => {
   const [email, setemail] = useState("")
-  
+  const sendEmail = () => {
+    // e.preventDefault()
+    send("service_9j9jeqz", "template_wxpiz2v", {
+      name: "User",
+      email: email,
+    }, "hGy8eHHHGgf3blQJ_").then(function (response) {
+      console.log('SUCCESS!', response.status, response.text);
+    }, function (error) {
+      console.log('FAILED...', error);
+    });
+  }
   const subscribe = async(e) => {
     e.preventDefault()
     console.log(email)
@@ -22,6 +33,7 @@ const Subscribe = () => {
 
       if(res.success) {
         setemail("")
+        sendEmail()
       }
   }
 
