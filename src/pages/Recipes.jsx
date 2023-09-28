@@ -16,9 +16,7 @@ const Recipes = () => {
 
     return (
         <>
-        <div className="px-10">
-        <Header />
-        </div>
+
             {
                 (recipes?.length > 0) ?
                     <ul className='relative flex flex-wrap justify-between p-5'>

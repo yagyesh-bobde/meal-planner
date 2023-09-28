@@ -48,11 +48,13 @@ const MealProvider = (props) => {
             const response = await fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=${import.meta.env.VITE_SPOONACULAR_API_KEY}&timeFrame=${formData.timeframe}&targetCalories=${formData.targetCal}&diet=${formData.diet}`)
             const data = await response.json()
             console.log(data)
-            return data.meals
+            return data
         } catch (error) {
             console.log(error)
         }
     }
+
+
 
     return (
         <mealContext.Provider value={{ 

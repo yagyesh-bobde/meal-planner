@@ -16,7 +16,6 @@ const Home = () => {
   
   return (
       <main className='px-10 sm:px-[100px]'>
-          <Header />
           <Hero />
           <Table />
           {/* <Testimonials /> */}

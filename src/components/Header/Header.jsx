@@ -30,12 +30,30 @@ const Header = () => {
                 </li>
             </ul>
             <div className="nav_auth text-xl">
-                <button className=' rounded-full px-5 py-2 text-gray-400 font-semibold'>
-                    Log In
-                </button>
-                <button className='border-[1px] border-green-400 rounded-full px-5 py-2 text-gray-400 font-semibold'>
-                    Sign Up
-                </button>
+                
+            {
+                    !localStorage.getItem('login')  ? 
+                    <>
+                        <button className='cursor-pointer hover:scale-110  duration-300 rounded-full px-5 py-2 text-gray-400 font-semibold'>
+                            <NavLink to="/login">
+                                Log In
+                            </NavLink>
+                        </button>
+                        <button className='cursor-pointer hover:scale-110  duration-300 border-[1px] border-green-400 rounded-full px-5 py-2 text-gray-400 font-semibold'>
+                            <NavLink to="/signup">
+                                Sign Up
+                            </NavLink>
+                        </button>
+                    </>
+                    :
+                    <button className='cursor-pointer hover:scale-110  duration-300 border-[1px] bg-black shadow-xl rounded-full px-5 py-2 text-white font-semibold' onClick={() => {
+                        localStorage.removeItem('login')
+                    }}>
+                        <NavLink to="/">
+                            Log Out
+                        </NavLink>
+                    </button> 
+                }
             </div>
         </nav>
   )

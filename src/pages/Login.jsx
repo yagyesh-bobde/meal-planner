@@ -1,35 +1,35 @@
 import { useState } from "react"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 
 
-const Signup = () => {
+const Login = () => {
+    const navigate = useNavigate()
     const [ formData , setformData ] = useState({
         email: '' ,
-        name: '',
         password: ''
     })
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const response = await fetch(`${import.meta.env.VITE_OUTERBASE_URL}/signup`, {
+        const response = await fetch(`${import.meta.env.VITE_OUTERBASE_URL}/login`, {
             'method': 'POST',
             'headers': {
                 'content-type': 'application/json'
             },
             'body': JSON.stringify({
                 email: formData.email, 
-                name: formData.name,
                 password: formData.password
             })
             })
 
         const data = await response.json()
+        console.log(data)
         setformData({
-            name: '',
             email: '' ,
             password: ''
         })
         if(data.success) {
-            navigate('/login')
+            localStorage.setItem('login', true)
+            navigate('/meal-planner')
         } else { 
             alert("Try Again !")
         }
@@ -41,17 +41,13 @@ const Signup = () => {
             [e.target.name] : e.target.value
         })
     }
-  return (
+    return (
       <div className="w-full min-h-[85vh] overflow-hidden grid place-content-center ">
           <form onSubmit={handleSubmit} className="login flex flex-col gap-5 bg-white rounded-2xl p-5 min-w-[350px] shadow-xl">
               <h1 className="text-center text-2xl lg:text-3xl font-semibold">
-                  Sign Up
+                  LogIn
               </h1>
 
-              <div className="form-group flex flex-col">
-                  <label htmlFor="name " className="block text-semibold text-gray-400">Full Name</label>
-                  <input name="name"  type="text" placeholder="" className="block border-b-2 border-black pb-2 focus:outline-none" value={formData.name}  onChange={handleChange} />
-              </div>
 
               <div className="form-group flex flex-col">
                   <label htmlFor="email " className="block text-semibold text-gray-400">Email</label>
@@ -67,15 +63,16 @@ const Signup = () => {
           </div> :  */}
               <div className="subheading">
                   Don't have an account?
-                  <NavLink to="/login" className="text-blue-500">Login In.</NavLink>
+                  <NavLink to="/login" className="text-blue-500"> Login.</NavLink>
               </div>
               <button type="submit" className="bg-black py-2 text-white font-bold"
               >
-                  Create Account
+                  Log In
               </button>
           </form>
       </div>
-  )
+    )
 }
 
-export default Signup
+
+export default Login;
