@@ -8,6 +8,7 @@ export const tableData = [
         title: "Meal Tracker", 
         desc: 'MealMate is your ultimate meal planning companion helping you savor every meal', 
         buttonText: "Track my meals",
+        link: '/meal-tracker',
         img : Img1
     },
     {
@@ -15,6 +16,7 @@ export const tableData = [
         title: "Pre-made Plans", 
         desc: 'MealMate is your ultimate meal planning companion helping you savor every meal', 
         buttonText: "View Plan",
+        link: '/meal-planner',
         img : Img2
     },
     {
@@ -22,6 +24,7 @@ export const tableData = [
         title: "Recipes", 
         desc: 'MealMate is your ultimate meal planning companion helping you savor every meal', 
         buttonText: "View Recipes",
+        link: '/recipes',
         img : Img3
     },
 ]

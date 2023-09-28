@@ -8,12 +8,10 @@ const MealProvider = (props) => {
     const fetchRecipes = async () => {
         try {
             // const response = await fetch(`${import.meta.env.VITE_OUTERBASE_URL}/recipes`)
-            const response = await fetch('https://developed-lavender.cmd.outerbase.io/recipes')
+            const response = await fetch(`${import.meta.env.VITE_OUTERBASE_URL}/recipes`)
             const data = await response.json()
             // setAllRecipes(data.response)
-            if(data.success) {
-                setrecipes(data.response.items)
-            }
+            setrecipes(data.response.items)
         } catch (error) {
             console.log(error)
         }
@@ -22,12 +20,17 @@ const MealProvider = (props) => {
     // TODO: Add recipe
     const addRecipe = async(formData) => {
         try{ 
-            const response = await fetch("https://developed-lavender.cmd.outerbase.io/create-recipe", {
+            const response = await fetch(`${import.meta.env.VITE_OUTERBASE_URL}/newrecipe`, {
             'method': 'POST',
             'headers': {
                 'content-type': 'application/json'
             },
-            'body': JSON.stringify(formData)
+            'body': JSON.stringify({
+                recipe_name: formData.recipe_name,
+                ingredients: formData.ingredients,
+                rating: formData.rating,
+                img_src: formData.img_src
+            })
             })
 
             const res = await response.json()   
@@ -40,9 +43,9 @@ const MealProvider = (props) => {
 
 
     // TODO: Get meal plan
-    const getMealPlan = async(timeframe= "day" , targetCal = 2000 , diet="vegetarian") => {
+    const getMealPlan = async(formData) => {
         try {
-            const response = await fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=${import.meta.env.VITE_SPOONACULAR_API_KEY}&timeFrame=${timeframe}&targetCalories=${targetCal}&diet=${diet}`)
+            const response = await fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=${import.meta.env.VITE_SPOONACULAR_API_KEY}&timeFrame=${formData.timeframe}&targetCalories=${formData.targetCal}&diet=${formData.diet}`)
             const data = await response.json()
             console.log(data)
             return data.meals

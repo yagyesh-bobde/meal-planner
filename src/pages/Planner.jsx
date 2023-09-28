@@ -1,6 +1,7 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext,  useState } from "react"
 import mealContext from "../context/mealContext"
 import { Link } from "react-router-dom"
+import Header from "../components/Header/Header"
 
 const Planner = () => {
     const { getMealPlan } = useContext(mealContext)
@@ -9,36 +10,11 @@ const Planner = () => {
         timeframe: "day",
         diet: "vegetarian"
     })
-    const [mealPlan, setmealPlan] = useState([
-        {
-            "id": 635446,
-            "imageType": "jpg",
-            "title": "Blueberry Cinnamon Porridge",
-            "readyInMinutes": 45,
-            "servings": 1,
-            "sourceUrl": "https://spoonacular.com/blueberry-cinnamon-porridge-635446"
-        },
-        {
-            "id": 642777,
-            "imageType": "jpg",
-            "title": "Fig and Goat Cheese Pizza With Pesto",
-            "readyInMinutes": 15,
-            "servings": 6,
-            "sourceUrl": "https://spoonacular.com/fig-and-goat-cheese-pizza-with-pesto-642777"
-        },
-        {
-            "id": 157344,
-            "imageType": "jpg",
-            "title": "Spicy Salad with Kidney Beans, Cheddar, and Nuts",
-            "readyInMinutes": 10,
-            "servings": 1,
-            "sourceUrl": "https://spoonacular.com/spicy-salad-with-kidney-beans-cheddar-and-nuts-157344"
-        }
-    ])
+    const [mealPlan, setmealPlan] = useState([])
 
     const showMealPlan = async(e) => {
         e.preventDefault()
-        const meals = await getMealPlan(...formData)
+        const meals = await getMealPlan(formData)
 
         setmealPlan(meals)
     }
@@ -52,6 +28,9 @@ const Planner = () => {
     }    
   return (
     <div className="min-h-screen">
+        <div className="px-10">
+            <Header />
+        </div>
         <h2 className="text-center">
             Meal Planner
         </h2>
@@ -89,7 +68,7 @@ const Planner = () => {
               </form>
 
               {
-                  mealPlan.length &&
+                  mealPlan?.length &&
                   <ul className='relative flex mx-auto flex-wrap justify-center p-5'>
                       {
                           mealPlan && mealPlan.map((recipe, index) => {

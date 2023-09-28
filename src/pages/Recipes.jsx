@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
 import mealContext from '../context/mealContext'
 import RecipeFormModal from '../components/Modal/RecipeFormModal'
+import Header from '../components/Header/Header'
+
 
 const Recipes = () => {
     const { fetchRecipes, recipes } = useContext(mealContext)
@@ -14,13 +16,17 @@ const Recipes = () => {
 
     return (
         <>
+        <div className="px-10">
+        <Header />
+        </div>
             {
                 (recipes?.length > 0) ?
                     <ul className='relative flex flex-wrap justify-between p-5'>
                         {
                             recipes && recipes.map((recipe, index) => {
+                                let tags = recipe.cuisine_path.toString().slice(1).split("/")
                                 return (
-                                    <li key={index} className=" w-full md:max-w-[30vw] rounded overflow-hidden my-5 shadow-lg">
+                                    <li  key={index} className="w-full md:max-w-[30vw] rounded overflow-hidden my-5 shadow-lg duration-300 hover:scale-110">
                                         <div className="w-full h-[45%]">
                                             <img width={"100%"} className="w-full h-full" src={recipe?.img_src} alt={recipe?.recipe_name} />
                                         </div>
@@ -33,9 +39,18 @@ const Recipes = () => {
                                             </p>
                                         </div>
                                         <div className="px-6 pt-4 pb-2">
-                                            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-                                            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-                                            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+                                            {
+                                                tags.map((tag, index) => {
+                                                    return(
+                                                        <span className="" >
+                                                            {
+                                                            tag &&
+                                                            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{tag}</span>
+                                                            }
+                                                        </span>
+                                                    )
+                                                })
+                                            }
                                         </div>
                                     </li>
                                 )
