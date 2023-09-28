@@ -19,7 +19,7 @@ const Header = () => {
                     </NavLink>
                 </li>
                 <li className='text-xl text-gray-400 font-semibold'>
-                    <NavLink to="/tracker" >
+                    <NavLink to="/meal-tracker" >
                         Nutrition Tracker
                     </NavLink>
                 </li>
