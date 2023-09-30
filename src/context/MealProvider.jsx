@@ -8,7 +8,7 @@ const MealProvider = (props) => {
     const fetchRecipes = async () => {
         try {
             // const response = await fetch(`${import.meta.env.VITE_OUTERBASE_URL}/recipes`)
-            const response = await fetch(`${import.meta.env.VITE_OUTERBASE_URL}/recipes`)
+            const response = await fetch(`https://encouraging-scarlet.cmd.outerbase.io/recipes`)
             const data = await response.json()
             // setAllRecipes(data.response)
             setrecipes(data.response.items)
@@ -20,7 +20,7 @@ const MealProvider = (props) => {
     // TODO: Add recipe
     const addRecipe = async(formData) => {
         try{ 
-            const response = await fetch(`${import.meta.env.VITE_OUTERBASE_URL}/newrecipe`, {
+            const response = await fetch(`https://encouraging-scarlet.cmd.outerbase.io/newrecipe`, {
             'method': 'POST',
             'headers': {
                 'content-type': 'application/json'
@@ -45,7 +45,7 @@ const MealProvider = (props) => {
     // TODO: Get meal plan
     const getMealPlan = async(formData) => {
         try {
-            const response = await fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=${import.meta.env.VITE_SPOONACULAR_API_KEY}&timeFrame=${formData.timeframe}&targetCalories=${formData.targetCal}&diet=${formData.diet}`)
+            const response = await fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=e95d3f8d33e34b2d80c5758dd4a007b8&timeFrame=${formData.timeframe}&targetCalories=${formData.targetCal}&diet=${formData.diet}`)
             const data = await response.json()
             console.log(data)
             return data

@@ -6,7 +6,7 @@ const Subscribe = () => {
   const subscribe = async(e) => {
     e.preventDefault()
     console.log(email)
-    const response = await fetch("https://encouraging-scarlet.cmd.outerbase.io/newsub", {
+    await fetch("https://encouraging-scarlet.cmd.outerbase.io/newsub", {
         'method': 'POST',
         'headers': {
           'content-type': 'application/json'
@@ -16,13 +16,9 @@ const Subscribe = () => {
           createdAt : new Date()
         })
       })
-
-      const res = await response.json()
-
-      if(res.success) {
-        e.reset()
-      }
   }
+
+  
 
   return (
     <div className="w-[80%] md:min-h-[15vh] mx-auto bg-custom-black px-5 py-10 flex-col md:flex-row flex justify-evenly items-center rounded-2xl text-white">

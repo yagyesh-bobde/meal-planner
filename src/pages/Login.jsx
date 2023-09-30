@@ -10,7 +10,7 @@ const Login = () => {
     })
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const response = await fetch(`${import.meta.env.VITE_OUTERBASE_URL}/login`, {
+        const response = await fetch(`https://encouraging-scarlet.cmd.outerbase.io/login`, {
             'method': 'POST',
             'headers': {
                 'content-type': 'application/json'
