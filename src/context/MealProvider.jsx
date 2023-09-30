@@ -3,7 +3,7 @@ import mealContext from "./mealContext";
 
 const MealProvider = (props) => {
     const [recipes, setrecipes] = useState([])
-    
+    const [user, setuser] = useState({})
     // TODO: Fetch recipes
     const fetchRecipes = async () => {
         try {
@@ -61,7 +61,8 @@ const MealProvider = (props) => {
             recipes,
             fetchRecipes,
             addRecipe,
-            getMealPlan
+            getMealPlan, 
+            user, setuser
          }}>
         { props.children }
         </mealContext.Provider>

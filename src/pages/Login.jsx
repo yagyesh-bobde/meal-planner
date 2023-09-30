@@ -28,8 +28,12 @@ const Login = () => {
             password: ''
         })
         if(data.success) {
-            localStorage.setItem('login', true)
-            navigate('/meal-planner')
+            if(data.response.items.length > 0){ 
+                setuser(data.response.items[0])
+                localStorage.setItem('login', true)
+                localStorage.setItem('id', data.response.items[0].id)
+                navigate('/meal-planner')
+            }
         } else { 
             alert("Try Again !")
         }

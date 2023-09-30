@@ -1,8 +1,14 @@
 
+import { useEffect, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
-
+import mealContext from '../../context/mealContext'
 
 const Header = () => {
+    const { user } = useContext(mealContext)
+    useEffect({ 
+
+    },[user])
+
   return (
         <nav className="flex-between h-[10vh] border-b-[1px]">
             <NavLink to="/" >
@@ -48,6 +54,7 @@ const Header = () => {
                     :
                     <button className='cursor-pointer hover:scale-110  duration-300 border-[1px] bg-black shadow-xl rounded-full px-5 py-2 text-white font-semibold' onClick={() => {
                         localStorage.removeItem('login')
+                        localStorage.removeItem('id')
                     }}>
                         <NavLink to="/">
                             Log Out
