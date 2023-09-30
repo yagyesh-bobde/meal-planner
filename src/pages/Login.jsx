@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
-
+import mealContext from '../context/mealContext'
 
 const Login = () => {
     const navigate = useNavigate()
+    const { user, setuser } = useContext(mealContext)
     const [ formData , setformData ] = useState({
         email: '' ,
         password: ''
@@ -60,7 +61,7 @@ const Login = () => {
 
               <div className="form-group flex flex-col">
                   <label htmlFor="password " className="block text-semibold text-gray-400">Password</label>
-                  <input name="password" type="password" placeholder="" className="block border-b-2 border-black pb-2 focus:outline-none" value={formData.password} onChange={handleChange} />
+                  <input name="password" type="password" placeholder="----------Not Required----------" className="block border-b-2 border-black pb-2 focus:outline-none hover:cursor-not-allowed" value={formData.password} disabled onChange={handleChange} />
               </div>
               {/* { isSignUp ? <div className="subheading">
             Already have an account? <NavLink to="/" className="text-blue-500">Login</NavLink>
