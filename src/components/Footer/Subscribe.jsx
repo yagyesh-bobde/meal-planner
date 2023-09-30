@@ -13,7 +13,8 @@ const Subscribe = () => {
         },
         'body': JSON.stringify({
           email: email, 
-          createdAt : new Date()
+          createdAt : new Date(), 
+          subscribeTo: "meal"
         })
       })
   }
