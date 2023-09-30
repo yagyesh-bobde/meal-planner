@@ -34,6 +34,7 @@ const MealProvider = (props) => {
             })
 
             const res = await response.json()   
+            setrecipes([...recipes, formData])
             console.log(res)
         }catch(error) {
             console.log("Error" + error.message)
